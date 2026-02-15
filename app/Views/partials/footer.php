@@ -465,10 +465,4 @@
       </div>
     </div>
     <!-- Load jQuery and plugins first -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- Owl Carousel JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <!-- Then load local main script which depends on jQuery and Owl Carousel -->
-    <script src="<?= base_url() ?>assets/js/main.js"></script>
-  </body>
-</html>
+

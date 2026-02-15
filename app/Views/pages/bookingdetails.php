@@ -1,8 +1,7 @@
-
     <div class="icon_container">
       <a href="https://wa.me/919211241314" target="_blank" rel="noopener">
         <img
-          src="<?= base_url()?>assets/images/whatsapp.png"
+          src ="<?= base_url()?>assets/images/whatsapp.png"
           alt="WhatsApp"
           class="whatsappIcon"
         />
@@ -12,12 +11,12 @@
     <section class="about_main_section">
       <div class="about_mains">
         <div class="about_images">
-          <img src="<?= base_url()?>assets/images/poojadetails.png" alt="about_image" />
+          <img src ="<?= base_url()?>assets/images/poojadetails.png" alt="about_image" />
         </div>
         <div class="about_head_content">
-          <h3>Bhoomi Pooja</h3>
+          <h3><?= $pooja['name'] ?></h3>
           <img
-            src="<?= base_url()?>assets/images/ellipse.png"
+            src ="<?= base_url()?>assets/images/ellipse.png"
             class="main_ellipse"
             alt="ellipse"
           />
@@ -25,7 +24,7 @@
             <a href="index.html">
               Home <i class="fa-solid fa-chevron-right"></i>
             </a>
-            Bhoomi Pooja
+            <?= $pooja['name'] ?>
           </p>
         </div>
       </div>
@@ -36,7 +35,7 @@
           <div class="about_right_section">
             <!-- Main Image -->
             <div class="about_right_image pooja_details_img">
-              <img id="mainImage" src="<?= base_url()?>assets/images/books.png" />
+              <img id="mainImage" src ="<?= base_url()?>/uploads/poojas/<?= $pooja['images'][0]['image_path'] ?>" />
             </div>
 
             <!-- Slider Wrapper -->
@@ -48,30 +47,13 @@
 
               <!-- Thumbnails -->
               <div class="thumb_slider" id="thumbSlider">
+                <?php foreach ($pooja['images'] as $image): ?>
                 <img
-                  src="<?= base_url()?>assets/images/pooja1.png"
+                  src ="<?= base_url()?>/uploads/poojas/<?= $image['image_path'] ?>"
                   onclick="changeImage(this)"
                 />
-                <img
-                  src="<?= base_url()?>assets/images/pooja2.png"
-                  onclick="changeImage(this)"
-                />
-                <img
-                  src="<?= base_url()?>assets/images/pooja3.png"
-                  onclick="changeImage(this)"
-                />
-                <img
-                  src="<?= base_url()?>assets/images/pooja4.png"
-                  onclick="changeImage(this)"
-                />
-                <img
-                  src="<?= base_url()?>assets/images/pooja5.png"
-                  onclick="changeImage(this)"
-                />
-                <img
-                  src="<?= base_url()?>assets/images/pooja6.png"
-                  onclick="changeImage(this)"
-                />
+              <?php endforeach; ?>
+                
               </div>
 
               <!-- Right Arrow -->
@@ -83,34 +65,85 @@
 
           <div class="about_left_sections">
             <div class="pandit_header_left pooja_details_rr">
-              <h3>Bhoomi Puja</h3>
-              <h5 class="starts">Advantage of Bhoomi Puja</h5>
+              <h3><?= $pooja['name'] ?></h3>
+              <h5 class="starts">Advantage of <?= $pooja['name'] ?></h5>
               <div class="mains_poojas_det">
                 <div class="star">&#9733;</div>
                 <div class="star">&#9733;</div>
                 <div class="star">&#9733;</div>
                 <div class="star">&#9733;</div>
                 <div class="star">&#9733;</div>
-                <p class="mains_ss">(0 customer reviews)</p>
+                <p class="mains_ss">(<?= rand(10, 100) ?> customer reviews)</p>
               </div>
               <p class="para_nn">
-                Bhoomi pooja is a ritual performed in honour of Goddess Bhoomi
-                Vastu Purush (deity of directions). Bhoomi means Mother Earth.
-                Hence, this pooja eradicates the ill effects & Vats Doshas in
-                the land. Beginning prior to the construction of any structure,
-                this smoothes out the process of construction.
+                <?= $pooja['pooja_description'] ?>
               </p>
-              <p class="para_nn bottom_nn">
-                Bhumi pooja / pujan is a Hindu ritual performed in honour of
-                Goddess Bhoomi or earth and Vastu Purush (the deity of
-                directions), before beginning the construction of new house. The
-                five elements of nature are also worshipped during the bhumi
-                pujan, also known as Neev Pujan. Bhoomi means mother earth.
-              </p>
+
+              <div class="samagri_section">
+  <h5 class="samagri_title">Samagri Included?</h5>
+
+  <div class="samagri_radio_group">
+    <label>
+      <input
+        type="radio"
+        name="samagri_included"
+        value="yes"
+        onclick="toggleSamagri(true)"
+      />
+      Yes
+    </label>
+
+    <label>
+      <input
+        type="radio"
+        name="samagri_included"
+        value="no"
+        onclick="toggleSamagri(false)"
+        checked
+      />
+      No
+    </label>
+  </div>
+
+  <!-- Samagri List -->
+  <div id="samagriListBox" class="samagri_list_box" style="display:none;">
+    <h6>Samagri Items Included:</h6>
+      <h4 class="samgri_price">Samagri Price: ₹ <?= $pooja['samagri_price'] ?></h4>
+    <ul class="samagri_list">
+      <?php
+        if (!empty($pooja['samagri_list'])) {
+          $samagriItems = explode(',', $pooja['samagri_list']);
+          foreach ($samagriItems as $item) {
+            echo "<li>" . trim($item) . "</li>";
+          }
+        } else {
+          echo "<li>No samagri items listed.</li>";
+        }
+          ?>
+      </ul>
+  </div>
+</div>
+<div class="pooja_prices">
+  <div class="pooja_price">
+    <h3>Market Price</h3>
+<h3>    <del>₹ <?= $pooja['market_price'] ?></del></h3>
+  </div>
+
+  <div class="pooja_price pujari_prices">
+    <h3>Pujari Dekho Offer Price</h3>
+    <h3>₹ <?= $pooja['price'] ?></h3>
+    <div class="price_saved">
+    You save ₹ <?= $pooja['market_price'] - $pooja['price'] ?> (<?= round((($pooja['market_price'] - $pooja['price']) / $pooja['market_price']) * 100, 2) ?>% OFF)
+  </div>
+  </div>
+
+  
+</div>
+
               <div class="points_angle">
-                <div class="pooja_price">
+                <!-- <div class="pooja_price">
                   <h3>Price: ₹ 899.00</h3>
-                </div>
+                </div> -->
                 <div class="pooja_button">
                   <button
                     class="btn btn-primary add_now"
@@ -118,7 +151,7 @@
                     onclick="openbooking()"
                   >
                     <img
-                      src="<?= base_url()?>assets/images/carti.png"
+                      src ="<?= base_url()?>assets/images/carti.png"
                       alt="icons"
                       style="width: 20px"
                     />
@@ -140,15 +173,17 @@
     >
       <div class="dots_new">
         <div class="image_dot">
-          <img src="<?= base_url()?>assets/images/dots1.png" alt="dots" />
+          <img src ="<?= base_url()?>assets/images/dots1.png" alt="dots" />
         </div>
       </div>
-      <div class="pooja_des_container">
+<div class="pooja_des_container">
         <div class="pooja_des_tabs">
-          <button class="pooja_des_tab pooja_des_active">Description</button>
-          <button class="pooja_des_tab">Significance</button>
-          <button class="pooja_des_tab">Faq's</button>
-          <button class="pooja_des_tab">Reviews (0)</button>
+          <button class="pooja_des_tab pooja_des_active" data-tab="desc">
+            Description
+          </button>
+          <button class="pooja_des_tab" data-tab="sign">Significance</button>
+          <button class="pooja_des_tab" data-tab="faq">Faq's</button>
+          <button class="pooja_des_tab" data-tab="review">Reviews (0)</button>
 
           <div class="pooja_des_share_section">
             <span class="pooja_des_share_text">SHARE</span>
@@ -157,39 +192,55 @@
                 href="https://www.facebook.com/profile.php?id=61565781186435"
                 target="_blank"
               >
-                <img src="<?= base_url()?>assets/images/poojaf.png" alt="Facebook" />
+                <img src="assets/images/poojaf.png" alt="Facebook" />
               </a>
               <a href="">
-                <img src="<?= base_url()?>assets/images/poojat.png" alt="Twitter" />
+                <img src="assets/images/poojat.png" alt="Twitter" />
               </a>
               <a href="https://www.instagram.com/pujaridekho/" target="_blank">
-                <img src="<?= base_url()?>assets/images/poojai.png" alt="LinkedIn" />
+                <img src="assets/images/poojai.png" alt="LinkedIn" />
               </a>
             </div>
           </div>
         </div>
 
         <div class="pooja_des_content_wrapper">
-          <div class="pooja_des_text_content">
+          <!-- DESCRIPTION -->
+          <div class="pooja_des_text_content tab_panel active" id="desc">
             <h1>Puja Description</h1>
-            <p>
-              According to Hindu mythology, Mother Earth is considered as Hindu
-              Goddess. Bhumi Puja is performed to Mother Earth and Vastu purusha
-              who is the god of the direction and five forces of the nature. It
-              is performed to remove all the evil forces surrounding the land
-              and to ask for forgiveness for the trouble caused to the living
-              beings who are in the land.
-            </p>
-
-            <h2>When to perform this Puja?</h2>
-            <p>
-              An auspicious date is finalized as per the Vastu time the date of
-              birth of the land owners. The Hindu calendar months of Shravan,
-              Kartik, Margshirsh and Paush are considered the most favourable
-              months for this Puja
-            </p>
+            <?= $pooja['full_desc'] ?>
           </div>
 
+          <!-- SIGNIFICANCE -->
+          <div class="pooja_des_text_content tab_panel" id="sign">
+            <h1>Significance</h1>
+            <?= $pooja['significance'] ?>
+          </div>
+
+          <!-- FAQ -->
+          <div class="pooja_des_text_content tab_panel" id="faq">
+            <h1>Faq's</h1>
+            <?php if (!empty($pooja['faqs'])): ?>
+              <div class="faq_section">
+                <?php foreach ($pooja['faqs'] as $faq): ?>
+                  <div class="faq_item">
+                    <h3 class="faq_question"><?= $faq['question'] ?></h3>
+                    <p class="faq_answer"><?= $faq['answer'] ?></p>
+                  </div>
+                <?php endforeach; ?>
+                <?php else: ?>
+                  <p>No FAQs available for this pooja.</p>
+                <?php endif; ?>
+              </div>
+          </div>
+
+          <!-- REVIEWS -->
+          <div class="pooja_des_text_content tab_panel" id="review">
+            <h1>Reviews</h1>
+            <p>Backend se aane wala review content.</p>
+          </div>
+
+          <!-- IMAGE SECTION SAME -->
           <div class="pooja_des_image_content">
             <div class="pooja_des_ritual_setup">
               <div class="pooja_des_kalash"></div>
@@ -201,7 +252,7 @@
               </div>
               <div class="pooja_des_ritual_items">
                 <div class="pooja_images_details">
-                  <img src="<?= base_url()?>assets/images/poojanew.png" alt="Pooja Items" />
+                  <img src="assets/images/poojanew.png" alt="Pooja Items" />
                 </div>
               </div>
             </div>
@@ -214,10 +265,10 @@
       <div class="mains_pandit_section main_products_section">
         <div class="pandit_section_header cart_section_headers">
           <div class="pandit_header_left">
-            <img src="<?= base_url()?>assets/images/abtop.png" alt="top_bar" />
+            <img src ="<?= base_url()?>assets/images/abtop.png" alt="top_bar" />
             <h3>Affordable Pooja stuffs to buy</h3>
             <div class="rects_images" style="margin-top: -5px">
-              <img src="<?= base_url()?>assets/images/Rectangle.png" />
+              <img src ="<?= base_url()?>assets/images/Rectangle.png" />
             </div>
           </div>
           <div class="pandit_header_right">
@@ -235,11 +286,11 @@
           >
             <div class="pandi_cards">
               <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/cart1.png" alt="" />
+                <img src ="<?= base_url()?>assets/images/cart1.png" alt="" />
               </div>
               <div class="card_widhlist">
                 <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
+                  ><img src ="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
                 </a>
               </div>
               <div class="pandit_content">
@@ -259,7 +310,7 @@
                     onclick="addToCart('Product Name', 95, 'assets/images/cart1.png')"
                   >
                     <img
-                      src="<?= base_url()?>assets/images/carti.png"
+                      src ="<?= base_url()?>assets/images/carti.png"
                       alt="icons"
                       style="width: 20px"
                     />
@@ -270,11 +321,11 @@
             </div>
             <div class="pandi_cards">
               <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/cart2.png" alt="" />
+                <img src ="<?= base_url()?>assets/images/cart2.png" alt="" />
               </div>
               <div class="card_widhlist">
                 <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
+                  ><img src ="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
                 </a>
               </div>
               <div class="pandit_content">
@@ -294,7 +345,7 @@
                     onclick="addToCart('Product Name', 95, 'assets/images/cart1.png')"
                   >
                     <img
-                      src="<?= base_url()?>assets/images/carti.png"
+                      src ="<?= base_url()?>assets/images/carti.png"
                       alt="icons"
                       style="width: 20px"
                     />
@@ -305,11 +356,11 @@
             </div>
             <div class="pandi_cards">
               <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/cart3.png" alt="" />
+                <img src ="<?= base_url()?>assets/images/cart3.png" alt="" />
               </div>
               <div class="card_widhlist">
                 <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
+                  ><img src ="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
                 </a>
               </div>
               <div class="pandit_content">
@@ -329,7 +380,7 @@
                     onclick="addToCart('Product Name', 95, 'assets/images/cart1.png')"
                   >
                     <img
-                      src="<?= base_url()?>assets/images/carti.png"
+                      src ="<?= base_url()?>assets/images/carti.png"
                       alt="icons"
                       style="width: 20px"
                     />
@@ -340,11 +391,11 @@
             </div>
             <div class="pandi_cards">
               <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/cart4.png" alt="" />
+                <img src ="<?= base_url()?>assets/images/cart4.png" alt="" />
               </div>
               <div class="card_widhlist">
                 <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
+                  ><img src ="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
                 </a>
               </div>
               <div class="pandit_content">
@@ -364,7 +415,7 @@
                     onclick="addToCart('Product Name', 95, 'assets/images/cart1.png')"
                   >
                     <img
-                      src="<?= base_url()?>assets/images/carti.png"
+                      src ="<?= base_url()?>assets/images/carti.png"
                       alt="icons"
                       style="width: 20px"
                     />
@@ -376,11 +427,11 @@
 
             <div class="pandi_cards">
               <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/cart1.png" alt="" />
+                <img src ="<?= base_url()?>assets/images/cart1.png" alt="" />
               </div>
               <div class="card_widhlist">
                 <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
+                  ><img src ="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
                 </a>
               </div>
               <div class="pandit_content">
@@ -400,7 +451,7 @@
                     onclick="addToCart('Product Name', 95, 'assets/images/cart1.png')"
                   >
                     <img
-                      src="<?= base_url()?>assets/images/carti.png"
+                      src ="<?= base_url()?>assets/images/carti.png"
                       alt="icons"
                       style="width: 20px"
                     />

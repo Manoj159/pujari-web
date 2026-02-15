@@ -34,6 +34,10 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'adminAuth' => \App\Filters\AdminAuth::class,
+        'adminLogin' => \App\Filters\AdminLogin::class,
+        'userAuth' => \App\Filters\UserAuth::class,
+        'userLogin' => \App\Filters\UserLogin::class,
     ];
 
     /**
@@ -73,7 +77,8 @@ class Filters extends BaseFilters
     public array $globals = [
         'before' => [
             // 'honeypot',
-            // 'csrf',
+            'csrf' => ['except' => ['api/*', 'webhook/*','admin/*', 'auth/*','user/*','user-auth/*']],
+             'cors' => ['except' => ['api/*', 'webhook/*','admin/*', 'auth/*','user/*','user-auth/*']],
             // 'invalidchars',
         ],
         'after' => [

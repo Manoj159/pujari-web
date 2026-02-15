@@ -51,48 +51,54 @@
               <p>
                 Fill up the form and our team will get back to within 24 hrs
               </p>
-
+              <form action="<?= base_url('contact-us') ?>" method="POST" id="contactForm">
+                <?= csrf_field() ?>
               <div class="main_contact_us">
                 <div class="main_contact_section">
                   <div class="main_con" style="margin-top: 15px">
                     <div class="main_con_input">
                       <label>First Name</label>
-                      <input type="text" placeholder="Enter First Name" />
+                      <input type="text" name="first_name" placeholder="Enter First Name" />
                     </div>
                     <div class="main_con_input">
                       <label>Last Name</label>
-                      <input type="text" placeholder="Enter Last Name" />
+                      <input type="text" name="last_name" placeholder="Enter Last Name" />
                     </div>
                   </div>
                   <div class="main_con">
                     <div class="main_con_input email_con">
                       <label>E-mail</label>
-                      <input type="text" placeholder="Enter Email ID" />
+                      <input type="text" name="email" placeholder="Enter Email ID" />
                     </div>
                   </div>
                   <div class="main_con">
                     <div class="main_con_input email_con">
                       <label>Subject</label>
-                      <input type="text" placeholder="Enter Subject" />
+                      <input type="text" name="subject" placeholder="Enter Subject" />
                     </div>
                   </div>
 
                   <div class="main_con">
                     <div class="main_con_input email_con">
                       <label>Messege</label>
-                      <textarea placeholder="Type your Messege"></textarea>
+                      <textarea name="message" placeholder="Type your Messege"></textarea>
                     </div>
                   </div>
 
                   <button
                     type="button"
+                    onclick="submitContact()"
                     class="btn btn-primary submit_button read_more"
                   >
                     SUBMIT
                     <i class="fa-solid fa-arrow-right"></i>
                   </button>
+
+
+                  <meta name="csrf-token" content="<?= csrf_hash() ?>">
                 </div>
               </div>
+              </form>
             </div>
           </div>
           <div class="about_right_section">

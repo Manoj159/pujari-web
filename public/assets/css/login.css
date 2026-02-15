@@ -1,0 +1,309 @@
+* {
+  box-sizing: border-box;
+  font-family: "DM Sans", sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* glow */
+body::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: #DD2A1B;
+  filter: blur(180px);
+  opacity: .15;
+  top: -120px;
+  right: -120px;
+}
+
+.app {
+  width: 100%;
+  padding: 24px;
+}
+
+.card {
+  max-width: 1100px;
+  margin: auto;
+  background: #fff;
+  display: flex;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.35);
+}
+
+/* LEFT */
+.illustration {
+  width: 50%;
+  background: linear-gradient(135deg, #fff7ed, #ffe4d6, #ffd6cc);
+  position: relative;
+  overflow: visible;
+}
+
+.shapes {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.shape {
+  position: absolute;
+  bottom: 0;
+  transition: transform .3s;
+}
+
+.shape:hover {
+  transform: scale(1.05);
+}
+
+/* SHAPES */
+.purple {
+  left: 28%;
+  width: 130px;
+  height: 400px;
+  background: #7c3aed;
+  z-index: 2;
+}
+
+.dark {
+  left: 52%;
+  width: 110px;
+  height: 320px;
+  background: #111;
+  z-index: 3;
+}
+
+.yellow {
+  left: 60%;
+  width: 130px;
+  height: 230px;
+  background: #facc15;
+  border-radius: 60px 60px 0 0;
+  z-index: 4;
+}
+
+.orange {
+  left: 18%;
+  width: 240px;
+  height: 220px;
+  background: #f97316;
+  border-radius: 100px 100px 0 0;
+  z-index: 5;
+}
+
+/* EYES */
+.eyes {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.eyes span {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  position: relative;
+  transition: transform .1s linear;
+}
+
+.eyes span::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  background: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+
+.no-pupil span::after {
+  display: none;
+}
+
+.dark-eyes span {
+  width: 14px;
+  height: 14px;
+}
+
+.dark-eyes span::after {
+  width: 5px;
+  height: 5px;
+  top: 4.5px;
+  left: 4.5px;
+}
+
+.orange-eyes span {
+  background: #000;
+}
+
+.orange-eyes span::after {
+  display: none;
+}
+
+/* MOUTH */
+.mouth {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  width: 25px;
+  height: 6px;
+  background: rgba(0, 0, 0, .3);
+  border-radius: 0 0 20px 20px;
+  transform: translateX(-50%);
+}
+
+.mouth.big {
+  width: 40px;
+  height: 10px;
+  background: rgba(0, 0, 0, .6);
+}
+
+/* FORM */
+.form-container {
+  width: 50%;
+  padding: 60px;
+  background: #ffffff;
+}
+
+.form-box {
+  max-width: 360px;
+  margin: auto;
+}
+
+.header {
+  text-align: center;
+}
+
+.logo {
+  width: 180px;
+  height: auto;
+  margin-bottom: 18px;
+}
+
+/* fields */
+.field {
+  margin-top: 24px;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.field input {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #e5e7eb;
+  padding: 10px 0;
+  background: transparent;
+  font-size: 15px;
+  outline: none;
+  transition: .3s;
+}
+
+.field input:focus {
+  border-bottom: 2px solid #DD2A1B;
+}
+
+/* password */
+.password {
+  position: relative;
+}
+
+.password button {
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* row */
+.row {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.row a {
+  color: #DD2A1B;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* button */
+.btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.primary {
+  background: #DD2A1B;
+  color: #fff;
+  transition: .3s;
+}
+
+.primary:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(221, 42, 27, 0.4);
+}
+
+/* signup */
+.signup {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.signup a {
+  color: #DD2A1B;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* responsive */
+@media(max-width:900px) {
+  .card {
+    flex-direction: column;
+  }
+
+  .illustration, .form-container {
+    width: 100%;
+  }
+
+  .illustration {
+    height: 260px;
+  }
+}
+
+@media(max-width:480px) {
+  .form-container {
+    padding: 32px 20px;
+  }
+}

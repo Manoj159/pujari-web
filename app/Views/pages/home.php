@@ -195,7 +195,7 @@
             </div>
           </div>
           <div class="pandit_header_right">
-            <a class="btn btn-secondary view_all">
+            <a href="<?= base_url('our-pandits') ?>" class="btn btn-secondary view_all">
               VIEW ALL
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -207,9 +207,10 @@
             class="pandit_cards_new owl-carousel owl-carousel-B owl-theme"
             id="owl-carousel-B"
           >
+          <?php foreach ($pandits as $pandit): ?>
             <div class="pandi_cards">
               <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/pandit1.png" alt="" />
+                <img src="<?= base_url('/uploads/pandits/').$pandit['profile_image']?>" alt="" />
               </div>
               <div class="card_widhlist">
                 <a href="#" class="wishlist-icon"
@@ -217,15 +218,9 @@
                 </a>
               </div>
               <div class="pandit_content">
-                <h3>Pandit Yadunandan Mishra</h3>
+                <h3><?= $pandit['name'] ?></h3>
                 <p class="pandit_description">
-                  Pandit Yadunandan Mishra is a highly experienced Vedic scholar
-                  specializing in Hindu rituals, astrology, and spiritual
-                  guidance. With over 20 years of expertise, he has conducted
-                  various ceremonies such as Griha Pravesh, Satyanarayan Puja,
-                  Rudrabhishek, and Wedding rituals. Known for his deep
-                  knowledge and devotion, he ensures a sacred and fulfilling
-                  experience for devotees.
+                  <?= $pandit['bio'] ?>
                 </p>
                 <button
                   class="btn btn-primary book_now"
@@ -233,127 +228,12 @@
                   type="button"
                 >
                   BOOK NOW
-                </button>
-              </div>
-            </div>
-            <div class="pandi_cards">
-              <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/pandit2.png" alt="" />
-              </div>
-              <div class="card_widhlist">
-                <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
-                </a>
-              </div>
-              <div class="pandit_content">
-                <h3>Acharya Pankaj Shatri</h3>
-                <p class="pandit_description">
-                  Acharya Pankaj Shastri is a highly respected and trusted
-                  pandit with over 18 years of experience in conducting
-                  traditional Hindu rituals and Vedic pujas. Renowned for his
-                  composed demeanor, insightful guidance, and profound knowledge
-                  of the scriptures, he brings clarity and spiritual depth to
-                  every ceremony. His approach ensures that each ritual is not
-                  only authentic but also deeply meaningful, helping individuals
-                  and families strengthen their connection with their faith and
-                  cultural roots.
                 </p>
-                <button
-                  class="btn btn-primary book_now"
-                  onclick="openbooking()"
-                  type="button"
-                >
-                  BOOK NOW
-                </button>
               </div>
             </div>
-            <div class="pandi_cards">
-              <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/pandit3.png" alt="" />
-              </div>
-              <div class="card_widhlist">
-                <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
-                </a>
-              </div>
-              <div class="pandit_content">
-                <h3>Pandit Santosh Mishra</h3>
-                <p class="pandit_description">
-                  With over 12 years of experience, Pandit Santosh Mishra is a
-                  dedicated and knowledgeable Vedic priest who specializes in a
-                  wide range of Hindu rituals and ceremonies. His deep
-                  understanding of ancient traditions, combined with his
-                  commitment to performing every puja with authenticity, ensures
-                  that each ceremony is conducted with the highest level of
-                  sincerity, precision, and spiritual integrity.
-                </p>
-                <button
-                  class="btn btn-primary book_now"
-                  onclick="openbooking()"
-                  type="button"
-                >
-                  BOOK NOW
-                </button>
-              </div>
-            </div>
-            <div class="pandi_cards">
-              <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/pandit2.png" alt="" />
-              </div>
-              <div class="card_widhlist">
-                <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
-                </a>
-              </div>
-              <div class="pandit_content">
-                <h3>Pandit Brijnandan Mishra</h3>
-                <p class="pandit_description">
-                  Pandit Brijnandan Mishra is a dedicated and highly experienced
-                  pandit with over 10 years of experience in performing a wide
-                  range of Hindu rituals. His expertise spans various Vedic and
-                  traditional pujas, including life events and spiritual
-                  ceremonies. Known for his authenticity and commitment to
-                  tradition, he is a trusted choice for families seeking genuine
-                  spiritual fulfillment.
-                </p>
-                <button
-                  class="btn btn-primary book_now"
-                  onclick="openbooking()"
-                  type="button"
-                >
-                  BOOK NOW
-                </button>
-              </div>
-            </div>
+          <?php endforeach; ?>
 
-            <div class="pandi_cards">
-              <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/pandit2.png" alt="" />
-              </div>
-              <div class="card_widhlist">
-                <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
-                </a>
-              </div>
-              <div class="pandit_content">
-                <h3>Pandit Anurag Pandey</h3>
-                <p class="pandit_description">
-                  Pandit Anurag Pandey is a highly trusted pandit with over 9
-                  years of experience performing traditional Hindu rituals and
-                  Vedic pujas. Known for his calm demeanor, clear explanations,
-                  and deep knowledge of the scriptures, he ensures that every
-                  ceremony is spiritually enriching and meaningful, helping
-                  individuals and families connect deeply with their faith.
-                </p>
-                <button
-                  class="btn btn-primary book_now"
-                  onclick="openbooking()"
-                  type="button"
-                >
-                  BOOK NOW
-                </button>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
@@ -395,7 +275,7 @@
             </div>
           </div>
           <div class="pandit_header_right">
-            <a class="btn btn-secondary view_all">
+            <a href="<?= base_url('pooja-list') ?>" class="btn btn-secondary view_all">
               VIEW ALL
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -404,9 +284,10 @@
 
         <div class="crausel_cards">
           <div class="pandit_cards_new carts_add_new">
+            <?php foreach ($poojas as $pooja): ?>
             <div class="pandi_cards mains_cardss">
               <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/pooja1.png" alt="" />
+                <img src="<?= base_url('/uploads/poojas/'.$pooja['images'][0]['image_path'])?>" alt="" />
               </div>
               <div class="card_widhlist">
                 <a href="#" class="wishlist-icon"
@@ -414,294 +295,33 @@
                 </a>
               </div>
               <div class="pandit_content">
-                <h3 class="pooja_names">Navarati Durga puja</h3>
+                <h3 class="pooja_names"><?= $pooja['name'] ?></h3>
                 <div class="pandit_descriptions">
                   <p>
-                    <strong> Description:</strong> A grand worship of Goddess
-                    Durga performed during the nine days of Navaratri to seek
-                    blessings for strength, prosperity, and protection.
+                    <strong> Description:</strong> <?= $pooja['pooja_description'] ?>
                   </p>
 
                   <p>
                     <strong>Includes:</strong>
-                    Kalash Sthapana, Durga Saptashati Path, Aarti, and Havan.
+                    <?= $pooja['inclusions'] ?>
                   </p>
                   <p>
-                    <strong>Best Time:</strong> Celebrated during the nine days
-                    of Navaratri as per the Hindu calendar. Duration: 2-4 hours
-                    (varies based on the rituals performed).
+                    <strong>Best Time:</strong> <?= $pooja['best_time'] ?>
                   </p>
+                  <p><strong>Duration:</strong> <?= $pooja['duration_minutes'] ?> minutes (varies based on the rituals performed).</p>
                 </div>
 
                 <button
                   class="btn btn-primary book_now"
-                  onclick="openbooking()"
+                  onclick='poojadetails(<?= json_encode($pooja["slug"]) ?>, <?= (int) $pooja["id"] ?>)'
                   type="button"
                 >
                   BOOK NOW
                 </button>
+
               </div>
             </div>
-            <div class="pandi_cards mains_cardss">
-              <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/pooja3.png" alt="" />
-              </div>
-              <div class="card_widhlist">
-                <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
-                </a>
-              </div>
-              <div class="pandit_content">
-                <h3 class="pooja_names">Vehicle puja/Car Puja</h3>
-                <div class="pandit_descriptions">
-                  <p>
-                    <strong> Description:</strong> A ritual to purify and bless
-                    a new vehicle for safety and prosperity.
-                  </p>
-
-                  <p>
-                    <strong>Includes:</strong>
-                    Ganesh Puja, Coconut Breaking, Swastik Marking, and Aarti.
-                  </p>
-                  <p>
-                    <strong>Best Time:</strong> On an auspicious muhurat or any
-                    new vehicle purchase.
-                  </p>
-
-                  <p><strong>Duration:</strong> 30-45 minutes.</p>
-                </div>
-                <button
-                  class="btn btn-primary book_now"
-                  onclick="openbooking()"
-                  type="button"
-                >
-                  BOOK NOW
-                </button>
-              </div>
-            </div>
-
-            <div class="pandi_cards mains_cardss">
-              <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/pooja5.png" alt="" />
-              </div>
-              <div class="card_widhlist">
-                <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
-                </a>
-              </div>
-              <div class="pandit_content">
-                <h3 class="pooja_names">Griha Pravesh Puja</h3>
-                <div class="pandit_descriptions">
-                  <p>
-                    <strong> Description:</strong> A grand worship of Goddess
-                    Durga performed during the nine days of Navaratri to seek
-                    blessings for strength, prosperity, and protection.
-                  </p>
-
-                  <p>
-                    <strong>Includes:</strong>
-                    Kalash Sthapana, Ganesh Puja, Navagraha Havan, and Vastu
-                    Puja.
-                  </p>
-                  <p>
-                    <strong>Best Time:</strong> On an auspicious tithi as per
-                    the Hindu calendar.
-                  </p>
-                  <p><strong>Duration:</strong>2-3 hours.</p>
-                </div>
-                <button
-                  class="btn btn-primary book_now"
-                  onclick="openbooking()"
-                  type="button"
-                >
-                  BOOK NOW
-                </button>
-              </div>
-            </div>
-            <div class="pandi_cards mains_cardss">
-              <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/pooja6.png" alt="" />
-              </div>
-              <div class="card_widhlist">
-                <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
-                </a>
-              </div>
-              <div class="pandit_content">
-                <h3 class="pooja_names">Maha Ganpati Homa</h3>
-                <div class="pandit_descriptions">
-                  <p>
-                    <strong> Description:</strong> A powerful puja dedicated to
-                    Lord Ganesha for removing obstacles and granting success.
-                  </p>
-
-                  <p>
-                    <strong>Includes:</strong>
-                    Ganesh Abhishek, Modak Offering, and Havan.
-                  </p>
-                  <p>
-                    <strong>Best Time:</strong> Chaturthi or an auspicious
-                    muhurat.
-                  </p>
-                  <p><strong>Duration:</strong>2-3 hours.</p>
-                </div>
-                <button
-                  class="btn btn-primary book_now"
-                  onclick="openbooking()"
-                  type="button"
-                >
-                  BOOK NOW
-                </button>
-              </div>
-            </div>
-            <div class="pandi_cards mains_cardss">
-              <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/pooja7.png" alt="" />
-              </div>
-              <div class="card_widhlist">
-                <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
-                </a>
-              </div>
-              <div class="pandit_content">
-                <h3 class="pooja_names">Bhoomi Puja</h3>
-                <div class="pandit_descriptions">
-                  <p>
-                    <strong> Description:</strong> A traditional ritual
-                    performed before starting any construction work to seek
-                    blessings from Mother Earth.
-                  </p>
-
-                  <p>
-                    <strong>Includes:</strong>
-                    Ganesh Puja, Kalash Puja, and Vastu Shanti.
-                  </p>
-                  <p>
-                    <strong>Best Time:</strong> As per Vastu Shastra on an
-                    auspicious muhurat.
-                  </p>
-                  <p><strong>Duration:</strong>2-3 hours.</p>
-                </div>
-                <button
-                  class="btn btn-primary book_now"
-                  onclick="openbooking()"
-                  type="button"
-                >
-                  BOOK NOW
-                </button>
-              </div>
-            </div>
-            <div class="pandi_cards mains_cardss">
-              <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/pooja8.png" alt="" />
-              </div>
-              <div class="card_widhlist">
-                <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
-                </a>
-              </div>
-              <div class="pandit_content">
-                <h3 class="pooja_names">Office puja / Bussiness puja</h3>
-                <div class="pandit_descriptions">
-                  <p>
-                    <strong> Description:</strong> A sacred puja for business
-                    success, growth, and protection from negative energies.
-                  </p>
-
-                  <p>
-                    <strong>Includes:</strong>
-                    Ganesh Puja, Lakshmi Puja, and Navagraha Havan.
-                  </p>
-                  <p>
-                    <strong>Best Time:</strong> During an auspicious muhurat.
-                  </p>
-                  <p><strong>Duration:</strong> 2-3 hours.</p>
-                </div>
-                <button
-                  class="btn btn-primary book_now"
-                  onclick="openbooking()"
-                  type="button"
-                >
-                  BOOK NOW
-                </button>
-              </div>
-            </div>
-            <div class="pandi_cards mains_cardss">
-              <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/pooja2.png" alt="" />
-              </div>
-              <div class="card_widhlist">
-                <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
-                </a>
-              </div>
-              <div class="pandit_content">
-                <h3 class="pooja_names">Shradh Puja</h3>
-                <div class="pandit_descriptions">
-                  <p>
-                    <strong> Description:</strong> A sacred ritual performed to
-                    honor and offer respect to ancestors, ensuring peace and
-                    liberation for their souls.
-                  </p>
-
-                  <p>
-                    <strong>Includes:</strong>
-                    Tarpan, Pind Daan, and Brahmin Bhojan.
-                  </p>
-                  <p>
-                    <strong>Best Time:</strong> Performed during Pitru Paksha or
-                    on the death anniversary (Tithi) of the departed soul.
-                  </p>
-                  <p><strong>Duration:</strong> 2-3 hours.</p>
-                </div>
-                <button
-                  class="btn btn-primary book_now"
-                  onclick="openbooking()"
-                  type="button"
-                >
-                  BOOK NOW
-                </button>
-              </div>
-            </div>
-            <div class="pandi_cards mains_cardss">
-              <div class="pandit_images">
-                <img src="<?= base_url()?>assets/images/pooja4.png" alt="" />
-              </div>
-              <div class="card_widhlist">
-                <a href="#" class="wishlist-icon"
-                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
-                </a>
-              </div>
-              <div class="pandit_content">
-                <h3 class="pooja_names">Kuber Puja</h3>
-                <div class="pandit_descriptions">
-                  <p>
-                    <strong> Description:</strong> A sacred ritual performed on
-                    the night of Diwali to invite Goddess Lakshmi’s blessings
-                    for wealth, prosperity, and happiness.
-                  </p>
-
-                  <p>
-                    <strong>Includes:</strong>
-                    Kalash Sthapana, Lakshmi-Ganesh Puja, Kuber Puja, and Deep
-                    Daan.
-                  </p>
-                  <p>
-                    <strong>Best Time:</strong>Performed during the Pradosh Kaal
-                    and Nishita Kaal on Diwali night as per the Hindu calendar.
-                  </p>
-                  <p><strong>Duration:</strong> 1-2 hours.</p>
-                </div>
-
-                <button
-                  class="btn btn-primary book_now"
-                  onclick="openbooking()"
-                  type="button"
-                >
-                  BOOK NOW
-                </button>
-              </div>
-            </div>
+            <?php endforeach; ?>
           </div>
         </div>
       </div>
