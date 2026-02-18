@@ -4,13 +4,64 @@ document.addEventListener("DOMContentLoaded", function () {
 
   navLinks.forEach((link) => {
     if (
-      currentUrl.includes(link.getAttribute("href")) &&
+      currentUrl == link.getAttribute("href") &&
       link.getAttribute("href") !== "#"
     ) {
       link.classList.add("active");
     }
   });
 });
+
+function poojadetails(pooja, pid) {
+  const params = new URLSearchParams({
+    pooja: pooja,
+    type: pid
+  });
+
+  window.location.href = "/bookingdetails?" + params.toString();
+}
+
+function submitContact() {
+  const form = document.getElementById("contactForm");
+  const formData = new FormData(form);
+
+  // get token name + value
+  const csrfField = document.querySelector('#contactForm input[type="hidden"]');
+  const csrfName  = csrfField.name;
+  const csrfValue = csrfField.value;
+
+  // append to FormData (CRITICAL)
+  formData.append(csrfName, csrfValue);
+
+  $.ajax({
+    url: '/contact-us',
+    type: 'POST',
+    data: formData,
+    processData: false,
+    contentType: false,
+
+    success: function (response) {
+      alert(response.message || 'Submitted successfully');
+      form.reset();
+
+      // 🔥 update token after submit
+      if (response.csrf) {
+        csrfField.value = response.csrf;
+        document.querySelector('meta[name="csrf-token"]').content = response.csrf;
+      }
+    },
+
+    error: function (xhr) {
+      console.error(xhr.responseText);
+      alert('CSRF Error: Please refresh the page and try again.');
+    }
+  });
+}
+
+
+
+
+
 
 $(document).ready(function () {
   $("#owl-carousel-A").owlCarousel({
@@ -556,112 +607,24 @@ function changeImage(element) {
 }
 
 // Tab switching functionality
-document.addEventListener("DOMContentLoaded", function () {
-  const tabs = document.querySelectorAll(".pooja_des_tab");
-  const contentSections = {
-    Description: `
-                    <h1>Puja Description</h1>
-                    <p>
-                        According to Hindu mythology, Mother Earth is considered as Hindu Goddess. Bhumi Puja is performed to Mother Earth and Vastu purusha who is the god of the direction and five forces of the nature. It is performed to remove all the evil forces surrounding the land and to ask for forgiveness for the trouble caused to the living beings who are in the land.
-                    </p>
-                    <h2>When to perform this Puja?</h2>
-                    <p>
-                        An auspicious date is finalized as per the Vastu time the date of birth of the land owners. The Hindu calendar months of Shravan, Kartik, Margshirsh and Paush are considered the most favourable months for this Puja
-                    </p>
-                `,
-    Significance: `
-                    <h1>Significance of Bhumi Puja</h1>
-                    <p>
-                        Bhumi Puja holds immense spiritual and cultural significance in Hindu tradition. This sacred ritual establishes a harmonious relationship between humans and the earth, seeking blessings before any construction activity begins.
-                    </p>
-                    <h2>Spiritual Benefits</h2>
-                    <p>
-                        The puja purifies the land and removes negative energies. It invokes the blessings of Vastu Purusha and ensures prosperity, peace, and protection for all who will inhabit or use the structure built on the land.
-                    </p>
-                    <h2>Cultural Importance</h2>
-                    <p>
-                        This ancient tradition demonstrates respect for nature and acknowledges that we are merely caretakers of the earth. It promotes environmental consciousness and spiritual awareness in modern construction practices.
-                    </p>
-                `,
-    "Faq's": `
-                    <h1>Frequently Asked Questions</h1>
-                    <h2>What items are needed for Bhumi Puja?</h2>
-                    <p>
-                        Essential items include coconut, flowers, fruits, incense sticks, camphor, turmeric, kumkum, rice, betel leaves, betel nuts, and a kalash (holy pot). A priest will guide you through the complete list.
-                    </p>
-                    <h2>How long does the puja take?</h2>
-                    <p>
-                        Typically, Bhumi Puja takes 1-2 hours depending on the rituals performed and the size of the land. The priest will conduct various ceremonies including mantra chanting and offerings.
-                    </p>
-                    <h2>Can Bhumi Puja be performed on any day?</h2>
-                    <p>
-                        While it can be performed on most days, it's recommended to choose an auspicious muhurat (time) based on the Hindu calendar and the owner's birth chart for maximum benefits.
-                    </p>
-                `,
-    "Reviews (0)": `
-                    <h1>Customer Reviews</h1>
-                    <p>
-                        There are no reviews yet. Be the first to share your experience with this puja service.
-                    </p>
-                    <h2>Write a Review</h2>
-                    <p>
-                        Your feedback helps others make informed decisions. Share your experience, the benefits you received, and how the puja ceremony was conducted.
-                    </p>
-                   <div style="margin-top: 30px;">
-    <textarea 
-        style="
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            min-height: 150px;
-            font-family: inherit;
-            font-size: 14px;
-        "
-        placeholder="Share your experience..."
-    ></textarea>
+document.querySelectorAll(".pooja_des_tab").forEach(tab => {
+  tab.addEventListener("click", () => {
 
-    <button 
-        style="
-            margin-top: 15px;
-            font-family: 'Montserrat', sans-serif;
-            padding: 12px 30px;
-            background-color: #d93025;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        "
-    >
-        Submit Review
-    </button>
-</div>`,
-  };
+    // active tab
+    document.querySelectorAll(".pooja_des_tab")
+      .forEach(t => t.classList.remove("pooja_des_active"));
+    tab.classList.add("pooja_des_active");
 
-  // Handle tab clicks
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", function () {
-      // Remove active class from all tabs
-      tabs.forEach((t) => t.classList.remove("pooja_des_active"));
+    // show content
+    document.querySelectorAll(".tab_panel")
+      .forEach(c => c.classList.remove("active"));
 
-      // Add active class to clicked tab
-      this.classList.add("pooja_des_active");
-
-      // Update content
-      const tabText = this.textContent.trim();
-      const textContent = document.querySelector(".pooja_des_text_content");
-
-      if (contentSections[tabText]) {
-        textContent.innerHTML = contentSections[tabText];
-
-        // Add animation
-        textContent.style.opacity = "0";
-        setTimeout(() => {
-          textContent.style.transition = "opacity 0.5s";
-          textContent.style.opacity = "1";
-        }, 50);
-      }
-    });
+    document.getElementById(tab.dataset.tab)
+      .classList.add("active");
   });
 });
+
+function toggleSamagri(show) {
+    document.getElementById("samagriListBox").style.display =
+      show ? "block" : "none";
+  }

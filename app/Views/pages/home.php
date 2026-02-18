@@ -148,9 +148,37 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <a href="" class="btn btn-primary read_more">
                 READ MORE
                 <i class="fa-solid fa-arrow-right"></i>
+=======
+          <a href="" class="btn btn-primary read_more">
+            READ MORE
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="top_pandit_list"
+      style="background-image: url(<?= base_url()?>assets/images/Union.png)"
+    >
+      <div class="mains_pandit_section">
+        <div class="pandit_section_header">
+          <div class="pandit_header_left">
+            <img src="<?= base_url()?>assets/images/abtop.png" alt="top_bar" />
+            <h3>Top Pandits in your area</h3>
+            <div class="rects_images" style="margin-top: -5px">
+              <img src="<?= base_url()?>assets/images/Rectangle.png" />
+            </div>
+          </div>
+          <div class="pandit_header_right">
+            <a href="<?= base_url('our-pandits') ?>" class="btn btn-secondary view_all">
+              VIEW ALL
+              <i class="fa-solid fa-arrow-right"></i>
+>>>>>>> a00204a822eea99e09be5fd3fbfb9f2ea5cbb193
             </a>
         </div>
     </div>
@@ -175,6 +203,7 @@
         </div>
 
         <div class="crausel_cards">
+<<<<<<< HEAD
             <div class="pandit_cards_new owl-carousel owl-carousel-B owl-theme" id="owl-carousel-B">
                 <div class="pandi_cards">
                     <div class="pandit_images">
@@ -304,6 +333,40 @@
                     </div>
                 </div>
             </div>
+=======
+          <div
+            class="pandit_cards_new owl-carousel owl-carousel-B owl-theme"
+            id="owl-carousel-B"
+          >
+          <?php foreach ($pandits as $pandit): ?>
+            <div class="pandi_cards">
+              <div class="pandit_images">
+                <img src="<?= base_url('/uploads/pandits/').$pandit['profile_image']?>" alt="" />
+              </div>
+              <div class="card_widhlist">
+                <a href="#" class="wishlist-icon"
+                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
+                </a>
+              </div>
+              <div class="pandit_content">
+                <h3><?= $pandit['name'] ?></h3>
+                <p class="pandit_description">
+                  <?= $pandit['bio'] ?>
+                </p>
+                <button
+                  class="btn btn-primary book_now"
+                  onclick="openbooking()"
+                  type="button"
+                >
+                  BOOK NOW
+                </p>
+              </div>
+            </div>
+          <?php endforeach; ?>
+
+
+          </div>
+>>>>>>> a00204a822eea99e09be5fd3fbfb9f2ea5cbb193
         </div>
     </div>
 </section>
@@ -337,6 +400,7 @@
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
+<<<<<<< HEAD
         </div>
 
         <div class="crausel_cards">
@@ -608,6 +672,58 @@
                     </div>
                 </div>
             </div>
+=======
+          </div>
+          <div class="pandit_header_right">
+            <a href="<?= base_url('pooja-list') ?>" class="btn btn-secondary view_all">
+              VIEW ALL
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="crausel_cards">
+          <div class="pandit_cards_new carts_add_new">
+            <?php foreach ($poojas as $pooja): ?>
+            <div class="pandi_cards mains_cardss">
+              <div class="pandit_images">
+                <img src="<?= base_url('/uploads/poojas/'.$pooja['images'][0]['image_path'])?>" alt="" />
+              </div>
+              <div class="card_widhlist">
+                <a href="#" class="wishlist-icon"
+                  ><img src="<?= base_url()?>assets/images/wishlist_cards.png" alt="Wishlist" />
+                </a>
+              </div>
+              <div class="pandit_content">
+                <h3 class="pooja_names"><?= $pooja['name'] ?></h3>
+                <div class="pandit_descriptions">
+                  <p>
+                    <strong> Description:</strong> <?= $pooja['pooja_description'] ?>
+                  </p>
+
+                  <p>
+                    <strong>Includes:</strong>
+                    <?= $pooja['inclusions'] ?>
+                  </p>
+                  <p>
+                    <strong>Best Time:</strong> <?= $pooja['best_time'] ?>
+                  </p>
+                  <p><strong>Duration:</strong> <?= $pooja['duration_minutes'] ?> minutes (varies based on the rituals performed).</p>
+                </div>
+
+                <button
+                  class="btn btn-primary book_now"
+                  onclick='poojadetails(<?= json_encode($pooja["slug"]) ?>, <?= (int) $pooja["id"] ?>)'
+                  type="button"
+                >
+                  BOOK NOW
+                </button>
+
+              </div>
+            </div>
+            <?php endforeach; ?>
+          </div>
+>>>>>>> a00204a822eea99e09be5fd3fbfb9f2ea5cbb193
         </div>
     </div>
 </section>

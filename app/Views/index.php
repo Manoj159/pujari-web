@@ -1,5 +1,4 @@
-<?php
-include 'partials/header.php';
-include 'pages/' . $page . '.php';
-include 'partials/footer.php';
-?>
+<?=  $this->extend('layouts/main') ?>
+<?= $this->Section("content")?>
+ <?= view('pages/' . $page . '.php');?>
+<?= $this->endSection("content")?>
